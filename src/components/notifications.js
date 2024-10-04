@@ -14,7 +14,17 @@ function Notification() {
             title: payload?.notification?.title,
             body: payload?.notification?.body
         });
+        
+    toast.success(
+        '${payload?.notification?.title}: ${payload?.notification?}',
+        {
+            duration: 60000,
+            position: "bottom-right"
+        }
+    );
+
     });
+
 
     return () => {
         unsubscribe.catch(err => console.log("failed: ", err));
