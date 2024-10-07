@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <Notification/>
+      {/* <Notification/> */}
       <div>
         Hey! That's an app to test PWA Push!       
       </div>
