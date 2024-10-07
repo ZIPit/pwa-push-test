@@ -7,11 +7,11 @@ function App() {
     <div className="App">
       <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <Notification/> 
       <div>
         Hey! That's an app to test PWA Push!       
       </div>
-        <img src={pwapic} className='App-image' alt='App-image' />
+      <Notification/> 
+      <img src={pwapic} className='App-image' alt='App-image' />
 
       </header>    
       

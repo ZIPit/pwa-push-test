@@ -37,10 +37,25 @@ function Notification() {
         unsubscribe.catch(err => console.log("failed: ", err));
     };
     },[]);
-return (
-    <div>
-        <Toaster />
-    </div>
-)
+if (isPushSupported()) {
+    return (
+        <div>
+            Push supported
+            <Toaster />
+        </div>
+    )}
+else {
+    return (
+        <div>
+            <div>
+            Push are not supported
+            <Toaster />
+        </div>
+
+        </div>
+    )
+}
+
+
 }
 export default Notification;
