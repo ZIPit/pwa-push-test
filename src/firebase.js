@@ -17,6 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const messaging = getMessaging(app);
 
+const isPushSupported = () =>
+  'Notification' in window &&
+  'serviceWorker' in navigator &&
+  'PushManager' in window
+
 const messaging = (async () => {
   try {
       const isSupportedBrowser = await isSupported();
@@ -91,8 +96,10 @@ const messaging = (async () => {
             
     });
   };
-  
+
+if (isPushSupported()) {
   requestPermission();
+}
 
 async function subscribeUserToTopic(token,topic) {
   try { // //localhost:3000
