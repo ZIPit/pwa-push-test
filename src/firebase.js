@@ -21,7 +21,7 @@ const isPushSupported = () =>
   'Notification' in window &&
   'serviceWorker' in navigator &&
   'PushManager' in window
-
+console.log(isPushSupported());
 const messaging = (async () => {
   try {
       const isSupportedBrowser = await isSupported();
