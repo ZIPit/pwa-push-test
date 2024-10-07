@@ -97,7 +97,7 @@ const messaging = (async () => {
 async function subscribeUserToTopic(token,topic) {
   try { // //localhost:3000
     //const response = await fetch('http://localhost:8080/subscribe',{
-    const response = await fetch('https://pwa-node-serv.fly.dev:3000/subscribe',{
+    const response = await fetch('https://pwa-node-serv.fly.dev/subscribe',{
     
       method: "POST",
       headers: {
