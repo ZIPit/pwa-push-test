@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getMessaging, getToken, onMessage, isSupported} from "firebase/messaging";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
+//const {google} = require('googleapis');
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCJSRdTXSMDwaGrzwslF6oy0HEz1UFqRL0",
@@ -32,16 +31,38 @@ const messaging = (async () => {
   }
   })();
 
+  
 
   export const requestForToken = async (dispatch) => {
     try {
+
         const messagingResolve = await messaging;
-        const currentToken = await getToken(messagingResolve, {
-            vapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU",
+        
+        navigator.serviceWorker.register('/firebase-messaging-sw.js').then(registration => {
+            getToken(messagingResolve, {
+              serviceWorkerRegistration: registration,
+              VapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU",
+            })
+            .then((currentToken) => {
+              if (currentToken) {
+                console.log("Client Token: ", currentToken);
+                subscribeUserToTopic(currentToken,"news");
+              }
+              else {
+                console.log("No registration token available. Request permission to generate one")
+              }
+            })            
         });
-        if (currentToken) {
-            console.log("Client Token: ", currentToken);
-        }
+
+
+        // const currentToken = await getToken(messagingResolve, {
+        //     vapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU",
+        // });
+        // if (currentToken) {
+        //     console.log("Client Token: ", currentToken);
+        //     subscribeUserToTopic(currentToken,"news");
+
+        // }
     } catch (err) {
         console.log('An error occurred while retrieving token. ', err);
     }
@@ -50,6 +71,7 @@ const messaging = (async () => {
   export const requestPermission = () => {
     console.log("Requesting permissions..");
     Notification.requestPermission().then(permission => {
+      
       if (permission==="granted"){
         console.log("Notification User permission granted.");
         return requestForToken()
@@ -57,47 +79,39 @@ const messaging = (async () => {
           console.log("Am error occured when requesting the app registration token.",
           err
           );
-          
         });
-      } else {
-        console.log("user permission denied");
-      }
+      } 
+      else if (permission==="default"){
+              console.log("Notification User is default");
+      
+            }
+            else {
+              console.log("user permission denied");
+            }
+            
     });
   };
   
   requestPermission();
 
-
-
-
-// export const requestPermission = () => {
-//   console.log("Requesting permissions..");
-//   Notification.requestPermission().then(permission => {
-//     if (permission==="granted"){
-//       console.log("Notification User permission granted.");
-//       return getToken(messaging, {
-//         vapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU"
-//       })
-//       .then(currentToken => {
-//         if (currentToken) {
-//           console.log("Client Token: ", currentToken);
-//         } else {
-//           console.log("Failed to generate the app registration token");
-//         }
-//       })
-//       .catch(err => {
-//         console.log("Am error occured when requesting the app registration token.",
-//         err
-//         );
-        
-//       });
-//     } else {
-//       console.log("user permission denied");
-//     }
-//   });
-// };
-
-// requestPermission();
+async function subscribeUserToTopic(token,topic) {
+  try { // //localhost:3000
+    const response = await fetch('http://localhost:3000/subscribe',{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({token, topic}),
+    });
+    if (response.ok) {
+      console.log('Successfully subscribed to topic', topic);
+    } else {
+      console.error('Failed to subscribe to topic',token);
+    }
+  } catch (error) {
+    console.error('Error subscribing to topic', error)
+  }
+}
 
 
 export const onMessageListener = async () =>

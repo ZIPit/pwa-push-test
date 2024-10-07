@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/9.9.1/firebase-messaging-compat.js');
+
+//import { getMessaging, onMessage } from "firebase/messaging";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,6 +22,12 @@ firebase.initializeApp(firebaseConfig);
 // Retrieve firebase messaging
 const messaging = firebase.messaging();
 
+// const messaging = getMessaging();
+
+// onMessage(messaging, (payload) => {
+//     console.log('Message received. ', payload);
+//     // ...
+//   });
 
 
 
@@ -29,6 +37,7 @@ const messaging = firebase.messaging();
    const notificationTitle = payload.notification.title;
    const notificationOptions = {
      body: payload.notification.body,
+     icon: '/logo192.png'
    };
 
    self.registration.showNotification(notificationTitle, notificationOptions);

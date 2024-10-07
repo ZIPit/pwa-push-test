@@ -6,6 +6,9 @@ function App() {
     <div className="App">
       <header className="App-header">
       <Notification/>
+      <div>
+        Hey! That's an app to test PWA Push! 
+      </div>
       </header>
     </div>
   );
