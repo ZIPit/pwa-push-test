@@ -4,9 +4,16 @@ import {requestPermission, onMessageListener} from "../firebase";
 
 function Notification() {
     const [notification, setNotification] = useState ({title: "", body: ""});
+    const isPushSupported = () =>
+        'Notification' in window &&
+        'serviceWorker' in navigator &&
+        'PushManager' in window
 
     useEffect(()=>{
-        requestPermission();
+        if (isPushSupported()){
+            requestPermission();
+        }
+        else {console.log('push apps are not supported by OS');}
     
 
     const unsubscribe = onMessageListener().then(payload => {

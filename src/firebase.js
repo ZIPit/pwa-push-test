@@ -97,9 +97,10 @@ const messaging = (async () => {
     });
   };
 
-if (isPushSupported()) {
-  requestPermission();
-}
+// if (!isPushSupported()) {
+//   console.log("it supprts push apps");
+//   requestPermission();
+// }
 
 async function subscribeUserToTopic(token,topic) {
   try { // //localhost:3000
