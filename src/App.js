@@ -13,7 +13,10 @@ function App() {
       </div>
       <Notification/> 
       <img src={pwapic} className='App-image' alt='App-image' />
+      <div style={{margin:50}}>
       <Token/>
+      </div>
+      
       </header>    
       
     </div>
