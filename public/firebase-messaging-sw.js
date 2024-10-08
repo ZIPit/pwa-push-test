@@ -29,6 +29,16 @@ const messaging = firebase.messaging();
 //     // ...
 //   });
 
+self,addEventListener("notificationclick", function (event)  {
+  const notification = event.notification;
+  const messageId = notification.data.messageId;
+  // Log custom event with Firebase Analytics
+  firebase.analytics().logEvent('notification_click', {
+    messageId: messageId
+  });
+  console.log('Po idee click otpravilsya');
+});
+
 self.addEventListener("push", function(event) {
   console.log("Received by sw")
   const notif = event.data.json().notification;

@@ -91,6 +91,7 @@ const messaging = (async () => {
       
       if (permission==="granted"){
         console.log("Notification User permission granted.");
+        window.requestPermission = 'ok';
         return requestForToken()
         .catch(err => {
           console.log("Am error occured when requesting the app registration token.",
@@ -100,9 +101,10 @@ const messaging = (async () => {
       } 
       else if (permission==="default"){
               console.log("Notification User is default");
-      
+              window.requestPermission = 'default';
             }
             else {
+              window.requestPermission = 'denied';
               console.log("user permission denied");
             }
             
