@@ -29,7 +29,20 @@ const messaging = firebase.messaging();
 //     // ...
 //   });
 
-
+self.addEventListener("push", function(event) {
+  console.log("Received by sw")
+  const notif = event.data.json().notification;
+  event.waitUntil(
+    self.registration.showNotification(notif.title,{
+      body: notif.body,
+      icon: notif.icon,
+      data: {
+        url: notif.click_action
+      }
+    })
+  )
+  
+})
 
  messaging.onBackgroundMessage(function(payload) {
    console.log("Received background message ", payload);

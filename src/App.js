@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import pwapic from './pwapic.jpg';
 import './App.css';
 import Notification from './components/notifications';
+import Token from './components/token';
 function App() {
   return (
     <div className="App">
@@ -12,7 +13,7 @@ function App() {
       </div>
       <Notification/> 
       <img src={pwapic} className='App-image' alt='App-image' />
-
+      <Token/>
       </header>    
       
     </div>

@@ -13,6 +13,8 @@ const firebaseConfig = {
   appId: "1:1057084821569:web:3111989b8e583d2cd036c0"
 };
 
+window.token= '';
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 //const messaging = getMessaging(app);
@@ -35,7 +37,16 @@ const messaging = (async () => {
       return null;
   }
   })();
+  
+  function ShowToken(token) {
 
+    return (
+      <div>
+          token
+      </div>
+    )}
+
+   
   
 
   export const requestForToken = async (dispatch) => {
@@ -52,6 +63,7 @@ const messaging = (async () => {
               if (currentToken) {
                 console.log("Client Token: ", currentToken);
                 subscribeUserToTopic(currentToken,"news");
+                window.token= currentToken;
               }
               else {
                 console.log("No registration token available. Request permission to generate one")
@@ -129,12 +141,13 @@ export const onMessageListener = async () =>
       (async () => {
           const messagingResolve = await messaging;
           onMessage(messagingResolve, (payload) => {
-              // console.log('On message: ', messaging, payload);
+              console.log('On message in firebase.js is triggered ', messaging, payload);
               resolve(payload);
           });
       })()
   );
 
+   
 
 // export const onMessageListener = () =>
 //   new Promise(resolve => {
