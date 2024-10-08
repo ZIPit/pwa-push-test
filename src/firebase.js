@@ -38,23 +38,14 @@ const messaging = (async () => {
   }
   })();
   
-  function ShowToken(token) {
 
-    return (
-      <div>
-          token
-      </div>
-    )}
-
-   
-  
 
   export const requestForToken = async (dispatch) => {
     try {
 
         const messagingResolve = await messaging;
         
-        navigator.serviceWorker.register('/firebase-messaging-sw.js').then(registration => {
+        navigator.serviceWorker.register('/firebase-messaging-sw.js').then(async (registration) => {
             getToken(messagingResolve, {
               serviceWorkerRegistration: registration,
               VapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU",
@@ -72,15 +63,7 @@ const messaging = (async () => {
         });
 
 
-        // const currentToken = await getToken(messagingResolve, {
-        //     vapidKey: "BIspkKxTDeNH6p8LazuKdfqzuwCeXOZ2tQK5ALf2qjBUZxsIVcfWbTJ9TUloGqHGUxf_4_dK0x-uHKzhopUMVwU",
-        // });
-        // if (currentToken) {
-        //     console.log("Client Token: ", currentToken);
-        //     subscribeUserToTopic(currentToken,"news");
-
-        // }
-    } catch (err) {
+     } catch (err) {
         console.log('An error occurred while retrieving token. ', err);
     }
     };

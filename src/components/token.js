@@ -7,10 +7,7 @@ const [scrolling, setScrolling] = useState(false);
 useEffect(()=>{
     window.addEventListener("click", () => {
         if (scrolling === false) setScrolling(true);
-      });
-    setTimeout(console.log('token is',window.token),10000);
-    setTimeout(console.log('token is',window.requestPermission),10000);
-       
+      });       
     setToken(window.token);
     setPermission(window.requestPermission);
     
