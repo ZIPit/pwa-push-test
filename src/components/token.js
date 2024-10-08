@@ -14,7 +14,7 @@ useEffect(()=>{
 },[scrolling]);
 
 return (
-    <div>
+    <div style={{margin:40}}>
         {token}
     </div>
 )}
