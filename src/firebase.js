@@ -10,7 +10,8 @@ const firebaseConfig = {
   projectId: "test-pwa-push-551e2",
   storageBucket: "test-pwa-push-551e2.appspot.com",
   messagingSenderId: "1057084821569",
-  appId: "1:1057084821569:web:3111989b8e583d2cd036c0"
+  appId: "1:1057084821569:web:3111989b8e583d2cd036c0",
+  measurementId: "G-YQW5100TRC"
 };
 
 window.token= '';
@@ -53,7 +54,7 @@ const messaging = (async () => {
             .then((currentToken) => {
               if (currentToken) {
                 console.log("Client Token: ", currentToken);
-                subscribeUserToTopic(currentToken,"news");
+                subscribeUserToTopic(currentToken,"news2");
                 window.token= currentToken;
               }
               else {
@@ -125,6 +126,7 @@ export const onMessageListener = async () =>
       (async () => {
           const messagingResolve = await messaging;
           onMessage(messagingResolve, (payload) => {
+              alert("new message")
               console.log('On message in firebase.js is triggered ', messaging, payload);
               resolve(payload);
           });

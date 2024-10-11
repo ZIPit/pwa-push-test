@@ -18,15 +18,15 @@ function Notification() {
 
     const unsubscribe = onMessageListener().then(payload => {
         setNotification({
-            title: payload?.notification?.title,
-            body: payload?.notification?.body
+            title: payload.notification.title,
+            body: payload.notification.body
         });
         
     toast.success(
-        '${payload?.notification?.title}: ${payload?.notification?}',
+        payload.notification.title +" : "+payload.notification.body, //"${payload.notification.title}: ${payload?.notification?}",
         {
-            duration: 60000,
-            position: "bottom-right"
+            duration: 5000,
+            position: "bottom"
         }
     );
 

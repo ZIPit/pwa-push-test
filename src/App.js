@@ -14,7 +14,6 @@ function App() {
       <Notification/> 
       <img src={pwapic} className='App-image' alt='App-image' />
       <div className='App-image'>
-        Your FCM Token is(Tap once):
       <Token/>
       </div>
       
