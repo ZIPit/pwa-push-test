@@ -51,7 +51,10 @@ const messaging = firebase.messaging();
      data: { url:link },
     };    
 
-   self.registration.showNotification(notificationTitle, notificationOptions);
+  // self.registration.showNotification(notificationTitle, notificationOptions);
+    navigator.serviceWorker.ready.then(function (registration) {
+    registration.showNotification(notificationTitle, notificationOptions);
+  });
  });
 
 ////Code for adding event on click of notification

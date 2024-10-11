@@ -126,7 +126,7 @@ export const onMessageListener = async () =>
       (async () => {
           const messagingResolve = await messaging;
           onMessage(messagingResolve, (payload) => {
-              alert("new message")
+              alert("Wow! New Web Push is just came in!")
               console.log('On message in firebase.js is triggered ', messaging, payload);
               resolve(payload);
           });
