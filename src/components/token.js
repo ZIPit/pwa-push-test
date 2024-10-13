@@ -20,9 +20,8 @@ useEffect(()=>{
 return (
     
     <div> 
-        User's Permissions:
-        <br/>
-        {permission}
+        User's Permissions in Browser settings:
+        <p style ={permission==='denied'?{color:"red"}:{color:"green"}}>{permission}</p>
         Your FCM Token is(Tap once):
         <br/>
         <input type="text" value={token} id="myInput" readOnly size="200" />

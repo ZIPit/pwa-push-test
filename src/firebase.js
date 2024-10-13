@@ -69,8 +69,41 @@ const messaging = (async () => {
     }
     };
 
+
+    // export const requestPermission = async () => {
+    //   console.log("Requesting permissions..");
+    //   window.requestPermission=Notification.permission;
+    //   if (Notification.permission === "granted"){
+    //     console.log("Notification User permission granted.");
+    //     return await requestForToken()
+    //     .catch(err => {
+    //       console.log("Am error occured when requesting the app registration token.",
+    //       err
+    //       );
+    //     });
+    //   }
+    //   console.log('sds',Notification.permission);
+    //   if (Notification.permission !== "denied") {
+    //     const permission = await Notification.requestPermission();
+       
+    //     if (permission ==="granted") {
+    //       return await requestForToken()
+    //       .catch(err => {
+    //         console.log("Am error occured when requesting the app registration token.",
+    //         err
+    //         );
+    //       });
+    //     }
+    //   }
+
+    //   console.log("Notification permission is not granted");
+    //   return null;
+      
+    // };
+
   export const requestPermission = () => {
     console.log("Requesting permissions..");
+    
     Notification.requestPermission().then(permission => {
       
       window.requestPermission=permission;
@@ -132,13 +165,3 @@ export const onMessageListener = async () =>
           });
       })()
   );
-
-   
-
-// export const onMessageListener = () =>
-//   new Promise(resolve => {
-//     console.log("Blabla");
-//     onMessage(messaging, payload => {
-//       resolve(payload);
-//     });
-//   });
