@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <div>
-        Hey! That's an app to test PWA Push!       
+        Hey! That's an app to test PWA Push w!       
       </div>
       <PwaModal/>
       <Notification/> 
