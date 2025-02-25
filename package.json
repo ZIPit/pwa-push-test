@@ -7,7 +7,6 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "aws-amplify": "^6.13.1",
     "body-parser": "^1.20.3",
     "body-scroll-lock": "^4.0.0-beta.0",
     "firebase": "^10.14.0",
@@ -45,22 +44,16 @@
     ]
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^1.14.1",
-    "@aws-amplify/backend-cli": "^1.4.11",
     "@babel/core": "7.22.5",
     "@babel/eslint-parser": "7.22.5",
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@babel/preset-env": "7.22.5",
     "@flydotio/dockerfile": "^0.5.9",
     "assert": "^2.1.0",
-    "aws-cdk": "^2.1000.3",
-    "aws-cdk-lib": "^2.180.0",
     "body-parser": "^1.20.3",
     "buffer": "^6.0.3",
-    "constructs": "^10.4.2",
     "cors": "^2.8.5",
     "crypto-browserify": "^3.12.0",
-    "esbuild": "^0.25.0",
     "express": "^4.19.2",
     "firebase-admin": "^12.6.0",
     "https-browserify": "^1.0.0",
@@ -69,8 +62,6 @@
     "react-app-rewired": "^2.2.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.7.3",
     "url": "^0.11.4"
   }
 }
